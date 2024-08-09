@@ -1,8 +1,15 @@
-export default function DeleteButton({ id, setTodos }) {
+import { useTodosContext } from "../lib/hooks"
+
+type DeleteButtonProps = {
+    id: number,
+}
+
+export default function DeleteButton({ id }: DeleteButtonProps) {
+    const { handleDeleteTodo } = useTodosContext()
     return (
         <button onClick={(e) => {
             e.stopPropagation()
-            setTodos((prev) => prev.filter((todo) => todo.id !== id))
+            handleDeleteTodo(id)
         }}>
             ❌
         </button>
